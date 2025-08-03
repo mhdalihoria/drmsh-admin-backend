@@ -9,6 +9,15 @@ import authRoutes from "./routes/authRoutes.js";
 dotenv.config();
 
 const app = express();
+// app.use(
+//   cors({
+//     origin: "https://drmsh-admin-frontend.netlify.app",
+//     credentials: true,
+//   })
+// );
+app.use(cors()); 
+app.use(express.json());
+
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -18,13 +27,6 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
-app.use(
-  cors({
-    origin: "https://drmsh-admin-frontend.netlify.app",
-    credentials: true,
-  })
-);
-app.use(express.json());
 
 app.use("/api/categories", categoryRoutes);
 app.use("/api/auth", authRoutes);
