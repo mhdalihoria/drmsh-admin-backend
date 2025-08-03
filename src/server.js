@@ -4,15 +4,20 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import categoryRoutes from "./routes/categoryRoutes.js";
-import authRoutes from "./routes/authRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
 const app = express();
-app.use(cors({
-  origin: ['http://localhost:5173'], // your frontend dev origin
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://drmsh-admin-frontend.netlify.app",
+    ], // your frontend dev origin
+    credentials: true,
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URI, {
