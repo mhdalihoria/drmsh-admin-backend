@@ -9,15 +9,10 @@ import authRoutes from "./routes/authRoutes.js";
 dotenv.config();
 
 const app = express();
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://drmsh-admin-frontend.netlify.app",
-    ], // your frontend dev origin
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: 'https://drmsh-admin-frontend.netlify.app',
+  credentials: true
+}));
 
 mongoose
   .connect(process.env.MONGO_URI, {
